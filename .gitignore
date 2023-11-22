@@ -363,3 +363,10 @@ logs
 
 # tests database
 unit_test.db
+
+# tests files
+files/
+
+download/
+
+observability/prometheus_data/
