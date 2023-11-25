@@ -7,6 +7,9 @@ from utils.validacpf import valida_cpf
 
 
 class Perfil(models.Model):
+    id = models.AutoField(primary_key=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     usuario = models.OneToOneField(User, on_delete=models.CASCADE,
                                    verbose_name='Usuário')
     idade = models.PositiveIntegerField()

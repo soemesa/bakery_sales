@@ -19,47 +19,23 @@
             <h1 class="h2">{{ produto.nome }}</h1>
             <p class="lead">{{ produto.descricao }}</p>
             <p class="lead">
-                {% if produto.preco_marketing_promocional %}
+                {% if produto.preco_promocional %}
                 <span id="variation-preco-promocional" class="lead product-price">
-                    {{ produto.preco_marketing_promocional|formata_preco }}
+                    {{ produto.preco_promocional|formata_preco }}
                 </span>
                 <span id="variation-preco" class="lead product-old-price text-muted">
-                    {{ produto.preco_marketing|formata_preco }}
+                    {{ produto.preco|formata_preco }}
                 </span>
                 {% else %}
                 <span id="variation-preco" class="lead product-price">
-                    {{ produto.preco_marketing|formata_preco }}
+                    {{ produto.preco|formata_preco }}
                 </span>
                 {% endif %}
             </p>
 
             <form action="{% url 'produto:adicionaraocarrinho' %}" id="form-add-to-cart">
                 <div class="form-group">
-                    <select id="select-variacoes" name="vid" class="form-control form-control-lg">
-                        {% for variacao in produto.variacao_set.all %}
-
-                        {% if variacao.preco_promocional %}
-                        <option data-preco="{{ variacao.preco|formata_preco }}"
-                            data-preco-promocional="{{ variacao.preco_promocional|formata_preco }}"
-                            value="{{ variacao.id }}">
-                            {% if variacao.nome %}
-                            {{ variacao.nome }}
-                            {% else %}
-                            {{ variacao }}
-                            {% endif %}
-                        </option>
-                        {% else %}
-                        <option data-preco="{{ variacao.preco|formata_preco }}" value="{{ variacao.id }}">
-                            {% if variacao.nome %}
-                            {{ variacao.nome }}
-                            {% else %}
-                            {{ variacao }}
-                            {% endif %}
-                        </option>
-                        {% endif %}
-
-                        {% endfor %}
-                    </select>
+                    <input type="hidden" name="vid" value="{{ produto.id }}" />
                 </div>
 
                 <div class="text-left">

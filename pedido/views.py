@@ -1,10 +1,9 @@
 from django.shortcuts import redirect, reverse
 from django.views.generic import ListView, DetailView
 from django.views import View
-# from django.http import HttpResponse
 from django.contrib import messages
 
-from produto.models import Variacao
+from produto.models import Produto
 from .models import Pedido, ItemPedido
 
 from utils import utils
@@ -49,26 +48,25 @@ class SalvarPedido(View):
             return redirect('produto:lista')
 
         carrinho = self.request.session.get('carrinho')
-        carrinho_variacao_ids = [v for v in carrinho]
-        bd_variacoes = list(
-            Variacao.objects.select_related('produto')
-            .filter(id__in=carrinho_variacao_ids)
+        carrinho_produto_ids = [v for v in carrinho]
+        bd_produto = list(
+            Produto.objects.all().filter(id__in=carrinho_produto_ids)
         )
 
-        for variacao in bd_variacoes:
-            vid = str(variacao.id)
+        for produto in bd_produto:
+            produto_id = str(produto.id)
 
-            estoque = variacao.estoque
-            qtd_carrinho = carrinho[vid]['quantidade']
-            preco_unt = carrinho[vid]['preco_unitario']
-            preco_unt_promo = carrinho[vid]['preco_unitario_promocional']
+            estoque = produto.estoque
+            qtd_carrinho = carrinho[produto_id]['quantidade']
+            preco_unt = carrinho[produto_id]['preco_unitario']
+            preco_unt_promo = carrinho[produto_id]['preco_unitario_promocional']
 
             error_msg_estoque = ''
 
             if estoque < qtd_carrinho:
-                carrinho[vid]['quantidade'] = estoque
-                carrinho[vid]['preco_quantitativo'] = estoque * preco_unt
-                carrinho[vid]['preco_quantitativo_promocional'] = estoque * \
+                carrinho[produto_id]['quantidade'] = estoque
+                carrinho[produto_id]['preco_quantitativo'] = estoque * preco_unt
+                carrinho[produto_id]['preco_quantitativo_promocional'] = estoque * \
                     preco_unt_promo
 
                 error_msg_estoque = 'Estoque insuficiente para alguns '\
@@ -103,8 +101,6 @@ class SalvarPedido(View):
                     pedido=pedido,
                     produto=v['produto_nome'],
                     produto_id=v['produto_id'],
-                    variacao=v['variacao_nome'],
-                    variacao_id=v['variacao_id'],
                     preco=v['preco_quantitativo'],
                     preco_promocional=v['preco_quantitativo_promocional'],
                     quantidade=v['quantidade'],
