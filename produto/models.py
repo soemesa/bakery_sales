@@ -19,6 +19,7 @@ class Produto(models.Model):
     preco_promocional = models.FloatField(
         default=0, verbose_name='Preço Promo.')
     estoque = models.PositiveIntegerField(default=1)
+    tipo = models.CharField(max_length=255, null=True)
 
     def get_preco_formatado(self):
         return utils.formata_preco(self.preco)

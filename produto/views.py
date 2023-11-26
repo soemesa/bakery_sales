@@ -5,6 +5,7 @@ from django.views import View
 from django.http import HttpResponse
 from django.contrib import messages
 from django.db.models import Q
+from django.template import loader
 
 from . import models
 from perfil.models import Perfil
@@ -16,6 +17,19 @@ class ListaProdutos(ListView):
     context_object_name = 'produtos'
     paginate_by = 10
     ordering = ['-id']
+
+
+class FiltrarProdutos(ListView):
+    model = models.Produto
+    template_name = 'produto/lista.html'
+    context_object_name = 'produtos'
+    paginate_by = 10
+    ordering = ['-nome']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(tipo=self.kwargs['tipo'])
+        return queryset
 
 
 class Busca(ListaProdutos):
@@ -102,9 +116,9 @@ class AdicionarAoCarrinho(View):
 
             carrinho[produto_id]['quantidade'] = quantidade_carrinho
             carrinho[produto_id]['preco_quantitativo'] = preco_unitario * \
-                quantidade_carrinho
+                                                         quantidade_carrinho
             carrinho[produto_id]['preco_quantitativo_promocional'] = preco_unitario_promocional * \
-                quantidade_carrinho
+                                                                     quantidade_carrinho
         else:
             carrinho[produto_id] = {
                 'produto_id': produto_id,
