@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 
-{% block titulo %} Inicio {% endblock %}
+{#{% block titulo %} Inicio {% endblock %}#}
 
 {% load omfilters %}
 {% load static %}
 
 {% block conteudo %}
 
+      <div>
+            <img src="{% static 'images/pada.jpg' %}"  width="100%" height="auto"/>
 
+            <p class="text-justify mt-20">
+                Desde 1953, a Padaria dos Sonhos faz parte da vida de milhares de pessoas, fazendo-se sempre presente nos momentos mais saborosos de nossas vidas,
+
+                compartilhando alegrias do café da manhã ao lanche da noite. É uma padaria tradicional que oferece uma variedade de produtos saborosos, feitos com
+
+                ingredientes frescos e de alta qualidade. Localizada no coração da cidade, a padaria é um ponto de encontro popular para moradores e visitantes.
+
+                Venha nos visitar e experimente nossos deliciosos pães, bolos, doces e salgados.
+            </p>
+    </div>
+
+    <div>
+        <img src="{% static 'images/promo.png' %}"  width="100%" height="auto"/>
+    </div>
 
 {% endblock %}
+
