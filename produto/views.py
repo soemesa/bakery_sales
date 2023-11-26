@@ -15,8 +15,8 @@ class ListaProdutos(ListView):
     model = models.Produto
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
-    paginate_by = 10
-    ordering = ['-id']
+    paginate_by = 12
+    ordering = ['-nome']
 
 
 class FiltrarProdutos(ListView):
