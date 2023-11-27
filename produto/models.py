@@ -12,6 +12,7 @@ class Produto(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     nome = models.CharField(max_length=255)
     descricao = models.TextField()
+    detalhes = models.TextField(null=True)
     imagem = models.ImageField(
         upload_to='produto_imagens/%Y/%m/', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
