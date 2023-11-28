@@ -42,10 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'crispy_forms',
+    'dbbackup'
 ]
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': 'backups/'}
 
 
 MIDDLEWARE = [
