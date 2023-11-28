@@ -1,0 +1,453 @@
+-- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
+--
+-- Host: 127.0.0.1    Database: padaria_db
+-- ------------------------------------------------------
+-- Server version	8.0.35-0ubuntu0.22.04.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `auth_group`
+--
+
+DROP TABLE IF EXISTS `auth_group`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_group` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(150) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group`
+--
+
+LOCK TABLES `auth_group` WRITE;
+/*!40000 ALTER TABLE `auth_group` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_group_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_group_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_group_permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `group_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_group_permissions_group_id_permission_id_0cd325b0_uniq` (`group_id`,`permission_id`),
+  KEY `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_group_permissio_permission_id_84c5c92e_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_group_permissions_group_id_b120cbf9_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_group_permissions`
+--
+
+LOCK TABLES `auth_group_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_group_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_group_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_permission`
+--
+
+DROP TABLE IF EXISTS `auth_permission`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_permission` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `content_type_id` int NOT NULL,
+  `codename` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_permission_content_type_id_codename_01ab375a_uniq` (`content_type_id`,`codename`),
+  CONSTRAINT `auth_permission_content_type_id_2f476e4b_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_permission`
+--
+
+LOCK TABLES `auth_permission` WRITE;
+/*!40000 ALTER TABLE `auth_permission` DISABLE KEYS */;
+INSERT INTO `auth_permission` VALUES (1,'Can add produto',1,'add_produto'),(2,'Can change produto',1,'change_produto'),(3,'Can delete produto',1,'delete_produto'),(4,'Can view produto',1,'view_produto'),(5,'Can add pedido',2,'add_pedido'),(6,'Can change pedido',2,'change_pedido'),(7,'Can delete pedido',2,'delete_pedido'),(8,'Can view pedido',2,'view_pedido'),(9,'Can add Item do pedido',3,'add_itempedido'),(10,'Can change Item do pedido',3,'change_itempedido'),(11,'Can delete Item do pedido',3,'delete_itempedido'),(12,'Can view Item do pedido',3,'view_itempedido'),(13,'Can add Perfil',4,'add_perfil'),(14,'Can change Perfil',4,'change_perfil'),(15,'Can delete Perfil',4,'delete_perfil'),(16,'Can view Perfil',4,'view_perfil'),(17,'Can add log entry',5,'add_logentry'),(18,'Can change log entry',5,'change_logentry'),(19,'Can delete log entry',5,'delete_logentry'),(20,'Can view log entry',5,'view_logentry'),(21,'Can add permission',6,'add_permission'),(22,'Can change permission',6,'change_permission'),(23,'Can delete permission',6,'delete_permission'),(24,'Can view permission',6,'view_permission'),(25,'Can add group',7,'add_group'),(26,'Can change group',7,'change_group'),(27,'Can delete group',7,'delete_group'),(28,'Can view group',7,'view_group'),(29,'Can add user',8,'add_user'),(30,'Can change user',8,'change_user'),(31,'Can delete user',8,'delete_user'),(32,'Can view user',8,'view_user'),(33,'Can add content type',9,'add_contenttype'),(34,'Can change content type',9,'change_contenttype'),(35,'Can delete content type',9,'delete_contenttype'),(36,'Can view content type',9,'view_contenttype'),(37,'Can add session',10,'add_session'),(38,'Can change session',10,'change_session'),(39,'Can delete session',10,'delete_session'),(40,'Can view session',10,'view_session');
+/*!40000 ALTER TABLE `auth_permission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user`
+--
+
+DROP TABLE IF EXISTS `auth_user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `password` varchar(128) NOT NULL,
+  `last_login` datetime(6) DEFAULT NULL,
+  `is_superuser` tinyint(1) NOT NULL,
+  `username` varchar(150) NOT NULL,
+  `first_name` varchar(150) NOT NULL,
+  `last_name` varchar(150) NOT NULL,
+  `email` varchar(254) NOT NULL,
+  `is_staff` tinyint(1) NOT NULL,
+  `is_active` tinyint(1) NOT NULL,
+  `date_joined` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user`
+--
+
+LOCK TABLES `auth_user` WRITE;
+/*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
+INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$600000$UKWM1UBFfnoI9hKnZEPLJ2$j5+6eBeEpzKsvCB5o6HA9AcPzktSNh0+FZsy5BndC94=','2023-11-27 18:42:45.354619',1,'admin','Soilenyis','Mesa','soilenyis@gmail.com',1,1,'2023-11-25 14:58:50.439373');
+/*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_groups`
+--
+
+DROP TABLE IF EXISTS `auth_user_groups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_groups` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `group_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_groups_user_id_group_id_94350c0c_uniq` (`user_id`,`group_id`),
+  KEY `auth_user_groups_group_id_97559544_fk_auth_group_id` (`group_id`),
+  CONSTRAINT `auth_user_groups_group_id_97559544_fk_auth_group_id` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`),
+  CONSTRAINT `auth_user_groups_user_id_6a12ed8b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_groups`
+--
+
+LOCK TABLES `auth_user_groups` WRITE;
+/*!40000 ALTER TABLE `auth_user_groups` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_groups` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `auth_user_user_permissions`
+--
+
+DROP TABLE IF EXISTS `auth_user_user_permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `auth_user_user_permissions` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `permission_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `auth_user_user_permissions_user_id_permission_id_14a6b632_uniq` (`user_id`,`permission_id`),
+  KEY `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` (`permission_id`),
+  CONSTRAINT `auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`),
+  CONSTRAINT `auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `auth_user_user_permissions`
+--
+
+LOCK TABLES `auth_user_user_permissions` WRITE;
+/*!40000 ALTER TABLE `auth_user_user_permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `auth_user_user_permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_admin_log`
+--
+
+DROP TABLE IF EXISTS `django_admin_log`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_admin_log` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `action_time` datetime(6) NOT NULL,
+  `object_id` longtext,
+  `object_repr` varchar(200) NOT NULL,
+  `action_flag` smallint unsigned NOT NULL,
+  `change_message` longtext NOT NULL,
+  `content_type_id` int DEFAULT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `django_admin_log_content_type_id_c4bce8eb_fk_django_co` (`content_type_id`),
+  KEY `django_admin_log_user_id_c564eba6_fk_auth_user_id` (`user_id`),
+  CONSTRAINT `django_admin_log_content_type_id_c4bce8eb_fk_django_co` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`),
+  CONSTRAINT `django_admin_log_user_id_c564eba6_fk_auth_user_id` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `django_admin_log_chk_1` CHECK ((`action_flag` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+LOCK TABLES `django_admin_log` WRITE;
+/*!40000 ALTER TABLE `django_admin_log` DISABLE KEYS */;
+INSERT INTO `django_admin_log` VALUES (1,'2023-11-25 14:59:25.441039','1','pão de queijo',1,'[{\"added\": {}}]',1,1),(2,'2023-11-26 14:59:51.739187','2','cafe',1,'[{\"added\": {}}]',1,1),(3,'2023-11-26 15:03:03.186735','3','bolo de milho',1,'[{\"added\": {}}]',1,1),(4,'2023-11-26 17:06:06.714336','4','croissant',1,'[{\"added\": {}}]',1,1),(5,'2023-11-26 17:08:14.533739','5','brioche',1,'[{\"added\": {}}]',1,1),(6,'2023-11-26 17:20:21.151203','6','cchocolate',1,'[{\"added\": {}}]',1,1),(7,'2023-11-26 17:21:43.289030','6','chocolate',2,'[{\"changed\": {\"fields\": [\"Nome\", \"Imagem\"]}}]',1,1),(8,'2023-11-26 18:37:11.747988','6','chocolate',2,'[{\"changed\": {\"fields\": [\"Descricao\", \"Imagem\"]}}]',1,1),(9,'2023-11-26 18:37:34.037987','3','bolo de milho',2,'[{\"changed\": {\"fields\": [\"Descricao\", \"Imagem\"]}}]',1,1),(10,'2023-11-26 18:38:22.145402','6','chocolate',2,'[]',1,1),(11,'2023-11-26 18:38:28.134479','5','brioche',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(12,'2023-11-26 18:38:34.122732','4','croissant',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(13,'2023-11-26 18:38:38.446970','3','bolo de milho',2,'[]',1,1),(14,'2023-11-26 18:38:44.480993','2','cafe',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(15,'2023-11-26 18:38:49.813275','1','pão de queijo',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(16,'2023-11-26 19:03:11.338361','1','pão de queijo',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(17,'2023-11-26 19:05:42.823809','1','pão de queijo',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(18,'2023-11-26 19:06:51.588973','6','chocolate',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(19,'2023-11-26 19:07:02.727839','3','bolo de milho',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(20,'2023-11-26 19:08:02.402147','5','brioche',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(21,'2023-11-26 19:08:15.902694','4','croissant',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(22,'2023-11-26 19:08:28.610073','2','cafe',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(23,'2023-11-26 19:12:42.908925','6','chocolate',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(24,'2023-11-26 19:14:39.583538','6','chocolate',2,'[{\"changed\": {\"fields\": [\"Imagem\"]}}]',1,1),(25,'2023-11-26 21:01:49.158675','1','pão de queijo',3,'',1,1),(26,'2023-11-26 21:02:00.968049','2','cafe',3,'',1,1),(27,'2023-11-26 21:02:13.416725','3','bolo de milho',3,'',1,1),(28,'2023-11-26 21:02:19.273487','6','chocolate',3,'',1,1),(29,'2023-11-26 21:02:30.162214','5','brioche',3,'',1,1),(30,'2023-11-26 21:02:35.705421','4','croissant',3,'',1,1),(31,'2023-11-26 21:07:45.790488','7','café',1,'[{\"added\": {}}]',1,1),(32,'2023-11-26 21:26:56.512046','8','bolo de abacaxi',1,'[{\"added\": {}}]',1,1),(33,'2023-11-26 21:27:52.338340','8','bolo de abacaxi',2,'[{\"changed\": {\"fields\": [\"Descricao\"]}}]',1,1),(34,'2023-11-26 21:34:06.233118','7','café',2,'[{\"changed\": {\"fields\": [\"Descricao\"]}}]',1,1),(35,'2023-11-26 21:34:36.988584','7','café',2,'[{\"changed\": {\"fields\": [\"Descricao\"]}}]',1,1),(36,'2023-11-26 21:36:48.728476','9','bolo de cenoura',1,'[{\"added\": {}}]',1,1),(37,'2023-11-26 21:38:27.775335','10','bolo pudim',1,'[{\"added\": {}}]',1,1),(38,'2023-11-26 21:43:11.829913','11','pão francês',1,'[{\"added\": {}}]',1,1),(39,'2023-11-26 21:46:29.427678','12','pão de hambúrguer',1,'[{\"added\": {}}]',1,1),(40,'2023-11-26 21:49:49.944206','13','pão integral',1,'[{\"added\": {}}]',1,1),(41,'2023-11-26 21:52:58.866622','14','pão de queijo',1,'[{\"added\": {}}]',1,1),(42,'2023-11-26 21:56:06.285668','15','chocolate quente',1,'[{\"added\": {}}]',1,1),(43,'2023-11-26 21:56:39.230114','15','chocolate quente',2,'[{\"changed\": {\"fields\": [\"Descricao\"]}}]',1,1),(44,'2023-11-26 22:00:08.377600','16','coca cola',1,'[{\"added\": {}}]',1,1),(45,'2023-11-26 22:04:53.776219','17','suco natural',1,'[{\"added\": {}}]',1,1),(46,'2023-11-26 22:20:53.517421','18','pão brioche',1,'[{\"added\": {}}]',1,1),(47,'2023-11-26 22:21:20.748889','18','pão brioche',2,'[{\"changed\": {\"fields\": [\"Descricao\"]}}]',1,1),(48,'2023-11-27 00:29:59.022098','18','pão brioche',2,'[{\"changed\": {\"fields\": [\"Detalhes\"]}}]',1,1),(49,'2023-11-27 00:48:33.791285','17','suco natural',2,'[{\"changed\": {\"fields\": [\"Detalhes\"]}}]',1,1);
+/*!40000 ALTER TABLE `django_admin_log` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_content_type`
+--
+
+DROP TABLE IF EXISTS `django_content_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_content_type` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app_label` varchar(100) NOT NULL,
+  `model` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `django_content_type_app_label_model_76bd3d3b_uniq` (`app_label`,`model`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_content_type`
+--
+
+LOCK TABLES `django_content_type` WRITE;
+/*!40000 ALTER TABLE `django_content_type` DISABLE KEYS */;
+INSERT INTO `django_content_type` VALUES (5,'admin','logentry'),(7,'auth','group'),(6,'auth','permission'),(8,'auth','user'),(9,'contenttypes','contenttype'),(3,'pedido','itempedido'),(2,'pedido','pedido'),(4,'perfil','perfil'),(1,'produto','produto'),(10,'sessions','session');
+/*!40000 ALTER TABLE `django_content_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_migrations`
+--
+
+DROP TABLE IF EXISTS `django_migrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_migrations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `app` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `applied` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_migrations`
+--
+
+LOCK TABLES `django_migrations` WRITE;
+/*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2023-11-25 14:57:13.907032'),(2,'auth','0001_initial','2023-11-25 14:57:16.056701'),(3,'admin','0001_initial','2023-11-25 14:57:16.519029'),(4,'admin','0002_logentry_remove_auto_add','2023-11-25 14:57:16.538892'),(5,'admin','0003_logentry_add_action_flag_choices','2023-11-25 14:57:16.561015'),(6,'contenttypes','0002_remove_content_type_name','2023-11-25 14:57:16.822958'),(7,'auth','0002_alter_permission_name_max_length','2023-11-25 14:57:17.175133'),(8,'auth','0003_alter_user_email_max_length','2023-11-25 14:57:17.419593'),(9,'auth','0004_alter_user_username_opts','2023-11-25 14:57:17.528048'),(10,'auth','0005_alter_user_last_login_null','2023-11-25 14:57:18.250388'),(11,'auth','0006_require_contenttypes_0002','2023-11-25 14:57:18.267986'),(12,'auth','0007_alter_validators_add_error_messages','2023-11-25 14:57:18.290580'),(13,'auth','0008_alter_user_username_max_length','2023-11-25 14:57:18.520520'),(14,'auth','0009_alter_user_last_name_max_length','2023-11-25 14:57:18.766633'),(15,'auth','0010_alter_group_name_max_length','2023-11-25 14:57:18.815258'),(16,'auth','0011_update_proxy_permissions','2023-11-25 14:57:18.833414'),(17,'auth','0012_alter_user_first_name_max_length','2023-11-25 14:57:19.037633'),(18,'pedido','0001_initial','2023-11-25 14:57:19.787344'),(19,'perfil','0001_initial','2023-11-25 14:57:19.975047'),(20,'produto','0001_initial','2023-11-25 14:57:20.046665'),(21,'sessions','0001_initial','2023-11-25 14:57:20.139973'),(22,'produto','0002_produto_tipo','2023-11-26 14:50:33.653449'),(23,'produto','0003_produto_detalhes','2023-11-27 00:04:55.578930');
+/*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `django_session`
+--
+
+DROP TABLE IF EXISTS `django_session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `django_session` (
+  `session_key` varchar(40) NOT NULL,
+  `session_data` longtext NOT NULL,
+  `expire_date` datetime(6) NOT NULL,
+  PRIMARY KEY (`session_key`),
+  KEY `django_session_expire_date_a5c62663` (`expire_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `django_session`
+--
+
+LOCK TABLES `django_session` WRITE;
+/*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
+INSERT INTO `django_session` VALUES ('k5jiqgupfgwwanrw0u6u0okq5kunlr3p','.eJxVjDsOgzAQRO_iGiF_MAuU6XODSMher2PysSMDFeLuMRJFomlG82ZmY6NZlzCuM-VxcmxgglW_mTX4pHgA9zDxnmpMccmTrY9KfdK5viZHr8vZ_TsIZg5ljag7r1vXgESnGt8rBAuAHLXsScsOWiLQShShEQJVST2gk9wC9105RZPzFENiw7ZXbKH8LpZ9bivnpBLbv8XyQmU:1r7Hit:itRTVq1n_AEeha6nB9PkOT6aInAyeQdbNwUvR2D2fEs','2023-12-03 16:11:07.987588'),('my5q2z2ibefuqj9nvb18trt6g0s8pcug','.eJxVjMsOwiAQRf-FtSE8BgSX7v0GMjAgVQNJaVfGf7dNutDtPefcNwu4LjWsI89hInZhkp1-t4jpmdsO6IHt3nnqbZmnyHeFH3TwW6f8uh7u30HFUbdaU3HkikFpUSqKBb13IgsPXtEZMANIMFJYqwU5vSFAKyMlUMZlIvb5At_8N6E:1r7gZs:8KVf98rIJcGrzFToj6tsmjdSr2vB1Mcl_Sl3CSDqKuI','2023-12-04 18:43:28.400232'),('o2zmq0mn10eh8tkpehghrnhjw2ip2sjh','eyJjYXJyaW5obyI6bnVsbH0:1r7Q3O:pHLK4s76DuvnOAuB_tkjL1i-3gz6yCa3J770oYAd5kc','2023-12-04 01:04:50.267004');
+/*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido_itempedido`
+--
+
+DROP TABLE IF EXISTS `pedido_itempedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pedido_itempedido` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `produto` varchar(255) NOT NULL,
+  `produto_id` int unsigned NOT NULL,
+  `preco` double NOT NULL,
+  `preco_promocional` double NOT NULL,
+  `quantidade` int unsigned NOT NULL,
+  `imagem` varchar(2000) NOT NULL,
+  `pedido_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pedido_itempedido_pedido_id_15c6b42d_fk_pedido_pedido_id` (`pedido_id`),
+  CONSTRAINT `pedido_itempedido_pedido_id_15c6b42d_fk_pedido_pedido_id` FOREIGN KEY (`pedido_id`) REFERENCES `pedido_pedido` (`id`),
+  CONSTRAINT `pedido_itempedido_chk_1` CHECK ((`produto_id` >= 0)),
+  CONSTRAINT `pedido_itempedido_chk_2` CHECK ((`quantidade` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido_itempedido`
+--
+
+LOCK TABLES `pedido_itempedido` WRITE;
+/*!40000 ALTER TABLE `pedido_itempedido` DISABLE KEYS */;
+INSERT INTO `pedido_itempedido` VALUES (1,'2023-11-27 00:55:52.556977','2023-11-27 00:55:52.557002','café',7,40,39.92,8,'produto_imagens/2023/11/cafe.jpg',1),(2,'2023-11-27 00:55:52.557030','2023-11-27 00:55:52.557040','pão brioche',18,10,9.85,1,'produto_imagens/2023/11/pao-brioche.jpg',1),(3,'2023-11-27 00:55:52.557064','2023-11-27 00:55:52.557073','bolo pudim',10,20,18,1,'produto_imagens/2023/11/bolo-pudim.jpg',1),(4,'2023-11-27 01:08:28.789035','2023-11-27 01:08:28.789070','suco natural',17,8,7.99,1,'produto_imagens/2023/11/suco-natural.jpg',2),(5,'2023-11-27 01:27:29.819864','2023-11-27 01:27:29.819889','pão de hambúrguer',12,16,13.98,2,'produto_imagens/2023/11/pao-para-hamburguer.jpg',3),(6,'2023-11-27 18:43:28.308845','2023-11-27 18:43:28.308869','suco natural',17,24,23.97,3,'produto_imagens/2023/11/suco-natural.jpg',4);
+/*!40000 ALTER TABLE `pedido_itempedido` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pedido_pedido`
+--
+
+DROP TABLE IF EXISTS `pedido_pedido`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `pedido_pedido` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `total` double NOT NULL,
+  `qtd_total` int unsigned NOT NULL,
+  `status` varchar(1) NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pedido_pedido_usuario_id_00e3febe_fk_auth_user_id` (`usuario_id`),
+  CONSTRAINT `pedido_pedido_usuario_id_00e3febe_fk_auth_user_id` FOREIGN KEY (`usuario_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `pedido_pedido_chk_1` CHECK ((`qtd_total` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `pedido_pedido`
+--
+
+LOCK TABLES `pedido_pedido` WRITE;
+/*!40000 ALTER TABLE `pedido_pedido` DISABLE KEYS */;
+INSERT INTO `pedido_pedido` VALUES (1,'2023-11-27 00:55:52.538970','2023-11-27 00:55:52.539008',67.77,10,'C',1),(2,'2023-11-27 01:08:28.639261','2023-11-27 01:08:28.639281',7.99,1,'C',1),(3,'2023-11-27 01:27:29.809585','2023-11-27 01:27:29.809606',13.98,2,'C',1),(4,'2023-11-27 18:43:28.217950','2023-11-27 18:43:28.217982',23.97,3,'C',1);
+/*!40000 ALTER TABLE `pedido_pedido` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `perfil_perfil`
+--
+
+DROP TABLE IF EXISTS `perfil_perfil`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `perfil_perfil` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `idade` int unsigned NOT NULL,
+  `data_nascimento` date NOT NULL,
+  `cpf` varchar(11) NOT NULL,
+  `endereco` varchar(50) NOT NULL,
+  `numero` varchar(5) NOT NULL,
+  `complemento` varchar(30) NOT NULL,
+  `bairro` varchar(30) NOT NULL,
+  `cep` varchar(8) NOT NULL,
+  `cidade` varchar(30) NOT NULL,
+  `estado` varchar(2) NOT NULL,
+  `usuario_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `usuario_id` (`usuario_id`),
+  CONSTRAINT `perfil_perfil_usuario_id_7f05c1ac_fk_auth_user_id` FOREIGN KEY (`usuario_id`) REFERENCES `auth_user` (`id`),
+  CONSTRAINT `perfil_perfil_chk_1` CHECK ((`idade` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `perfil_perfil`
+--
+
+LOCK TABLES `perfil_perfil` WRITE;
+/*!40000 ALTER TABLE `perfil_perfil` DISABLE KEYS */;
+INSERT INTO `perfil_perfil` VALUES (1,'2023-11-27 00:55:02.545982','2023-11-27 00:55:02.546003',23,'2000-11-20','71696340152','Rua Alberto Otto','1008','Bloco 5 apto 203','Santa Cândida','72912240','Curitiba','PR',1);
+/*!40000 ALTER TABLE `perfil_perfil` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `produto_produto`
+--
+
+DROP TABLE IF EXISTS `produto_produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `produto_produto` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `descricao` longtext NOT NULL,
+  `imagem` varchar(100) DEFAULT NULL,
+  `slug` varchar(50) DEFAULT NULL,
+  `preco` double NOT NULL,
+  `preco_promocional` double NOT NULL,
+  `estoque` int unsigned NOT NULL,
+  `tipo` varchar(255) DEFAULT NULL,
+  `detalhes` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `slug` (`slug`),
+  CONSTRAINT `produto_produto_chk_1` CHECK ((`estoque` >= 0))
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `produto_produto`
+--
+
+LOCK TABLES `produto_produto` WRITE;
+/*!40000 ALTER TABLE `produto_produto` DISABLE KEYS */;
+INSERT INTO `produto_produto` VALUES (7,'2023-11-26 21:07:45.789276','2023-11-26 21:34:36.984837','café','café expresso - 270ml','produto_imagens/2023/11/cafe.jpg','cafe',5,4.99,10,'bebida',NULL),(8,'2023-11-26 21:26:56.510613','2023-11-26 21:27:52.337422','bolo de abacaxi','Bolo cremoso  - 500g','produto_imagens/2023/11/bolo-abacaxi.jpg','bolo_abacaxi',20,18,10,'bolo',NULL),(9,'2023-11-26 21:36:48.727383','2023-11-26 21:36:48.727406','bolo de cenoura','bolo cremoso - 500g','produto_imagens/2023/11/bolo-cenoura.jpg','bolo_cenoura',20,18,10,'bolo',NULL),(10,'2023-11-26 21:38:27.743548','2023-11-26 21:38:27.743569','bolo pudim','bolo cremoso - 500g','produto_imagens/2023/11/bolo-pudim.jpg','bolo_pudim',20,18,10,'bolo',NULL),(11,'2023-11-26 21:43:11.828362','2023-11-26 21:43:11.828383','pão francês','a granel - unidade 50g','produto_imagens/2023/11/pao-frances.png','pao_frances',21.25,20,9,'pao',NULL),(12,'2023-11-26 21:46:29.396257','2023-11-26 21:46:29.396277','pão de hambúrguer','pacote de 280g','produto_imagens/2023/11/pao-para-hamburguer.jpg','pao_hamburguer',8,6.99,9,'pao',NULL),(13,'2023-11-26 21:49:49.942898','2023-11-26 21:49:49.942917','pão integral','pão de forma integral - 500g','produto_imagens/2023/11/pao-integral.jpg','pao_integral',7.59,7.5,10,'pao',NULL),(14,'2023-11-26 21:52:58.865437','2023-11-26 21:52:58.865459','pão de queijo','a granel - kg','produto_imagens/2023/11/pao-queijo.jpg','pao_queijo',29.99,28.5,10,'pao',NULL),(15,'2023-11-26 21:56:06.263976','2023-11-26 21:56:39.229205','chocolate quente','delicioso e cremoso','produto_imagens/2023/11/chocolate-quente.jpg','chocolate_quente',16,15.9,10,'bebida',NULL),(16,'2023-11-26 22:00:08.376416','2023-11-26 22:00:08.376438','coca cola','lata - 350ml','produto_imagens/2023/11/coca-cola.jpg','coca_cola',7,6.5,10,'bebida',NULL),(17,'2023-11-26 22:04:53.755741','2023-11-27 00:48:33.790041','suco natural','laranja, uva, melancia 300ml','produto_imagens/2023/11/suco-natural.jpg','suco_natural',8,7.99,10,'bebida','sucos 100% naturais preparado na hora com as frutas da época, sem conservantes, aditivos, corantes ou aromas artificiais. São mais de 10 sabores para todos os gostos'),(18,'2023-11-26 22:20:53.478279','2023-11-27 00:29:59.016026','pão brioche','feito com fermentação natural','produto_imagens/2023/11/pao-brioche.jpg','pao_brioche',10,9.85,10,'pao','O pão de Brioche tem origem francesa, é feito com alto teor de manteiga e ovo, tornando-o super saboroso e leve, perfeito para acompanhar um burger de alta qualidade.');
+/*!40000 ALTER TABLE `produto_produto` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-11-28  9:41:43
