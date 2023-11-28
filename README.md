@@ -55,3 +55,7 @@ python manage.py dbrestore
 user: admin
 password: wasaloko
 ```
+
+# Prints do site
+### Tela inicio
+![inicio.png](utils/readme/inicio.png)
