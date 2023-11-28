@@ -1,5 +1,5 @@
 # Projeto para venta de padaria online 
-Django 3.1.6 e Python 3.12.0
+Django 4.2.7 e Python 3.12.0
 
 ### Para rodar o projeto
 
@@ -7,22 +7,22 @@ Django 3.1.6 e Python 3.12.0
 git clone git@github.com:soemesa/bakery_sales.git
 ```
 * Criar banco de dado `padaria_db` em servidor mysql
-* No arquivo loja/settings.py:86 mudar as configurações do banco como usuário e senha
+* No arquivo loja/settings.py:91 mudar as configurações do banco como usuário e senha
 
 - Para **Linux**:
 
 ```
-cd bakery
+cd bakery_sales
 python -m venv venv
 . venv/bin/activate
 pip install install -r requirements.txt
 python manage.py migrate
 ```
 
-- Para **Windows**:
+- Para **Windows** (Não testado por não ter Sitema Operacional):
 
 ```
-cd bakery
+cd bakery_sales
 python -m venv venv
 venv\Scripts\activate.bat
 python -m pip install --upgrade pip setuptools wheel --user
@@ -46,3 +46,12 @@ http://localhost:8000/admin
 ```
 * Utilizar o super user criado
 
+## Pupular banco de dados para preencher registros para teste
+```
+python manage.py dbrestore
+```
+### No backup muda o super user
+```
+user: admin
+password: wasaloko
+```
