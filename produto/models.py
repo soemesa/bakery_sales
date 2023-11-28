@@ -12,6 +12,7 @@ class Produto(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     nome = models.CharField(max_length=255)
     descricao = models.TextField()
+    detalhes = models.TextField(null=True)
     imagem = models.ImageField(
         upload_to='produto_imagens/%Y/%m/', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
@@ -19,6 +20,7 @@ class Produto(models.Model):
     preco_promocional = models.FloatField(
         default=0, verbose_name='Preço Promo.')
     estoque = models.PositiveIntegerField(default=1)
+    tipo = models.CharField(max_length=255, null=True)
 
     def get_preco_formatado(self):
         return utils.formata_preco(self.preco)

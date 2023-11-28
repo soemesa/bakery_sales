@@ -1,7 +1,12 @@
 {% load omfilters %}
+{% load static %}
 
 <nav class="navbar navbar-dark bg-primary navbar-expand-lg">
-    <a class="navbar-brand" href="{% url 'produto:lista' %}">Inicio</a>
+
+    <div class="img-container d-flex justify-content-center align-items-center">
+        <a class="navbar-brand" href="http://localhost:8000"><img src="{% static 'images/logo_bg.png' %}" class="img-fluid"  width="100"  height="auto" alt=""></a>
+    </div>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,6 +33,15 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'perfil:criar' %}">Criar conta</a>
             </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link nav-cart-link active" href="{% url 'produto:carrinho' %}">
+                    <span class="nav-cart-text mr-1">
+                        Carrinho
+                    </span>
+                </a>
+            </li>
             {% endif %}
 
             {% if request.session.carrinho %}
@@ -47,6 +61,17 @@
             {% endif %}
 
 
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{% url 'produto:lista' %}" id="navbarDropdown" role="button"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Produtos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/produtos/">Todos</a>
+                    <a class="dropdown-item" href="/produtos/tipo/pao/">Pães</a>
+                    <a class="dropdown-item" href="/produtos/tipo/bolo/">Bolos</a>
+                    <a class="dropdown-item" href="/produtos/tipo/bebida/">Bebidas</a>
+                </div>
+            </li>
         </ul>
         <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'produto:busca' %}">
             <input name="termo" value="{{ request.GET.termo }}" class="form-control mr-sm-2" type="search"
@@ -55,3 +80,5 @@
         </form>
     </div>
 </nav>
+
+

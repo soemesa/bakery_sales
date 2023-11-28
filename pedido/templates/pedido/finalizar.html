@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Pagamento realizado | {% endblock %}
+
+{% load omfilters %}
+{% load static %}
+
+
+{% block conteudo %}
+
+<div>
+    <p>Recebemos seu pagamento! O pedido vai ser encaminhado até você em breve</p>
+</div>
+
+<div class="row mt-4">
+    <div class="col">
+        <a href="{% url 'produto:lista' %}" class="btn btn-primary btn-block btn-lg">Continuar comprando</a>
+    </div>
+</div>
+
+{% endblock %}
