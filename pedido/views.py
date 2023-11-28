@@ -67,12 +67,12 @@ class SalvarPedido(View):
                 carrinho[produto_id]['quantidade'] = estoque
                 carrinho[produto_id]['preco_quantitativo'] = estoque * preco_unt
                 carrinho[produto_id]['preco_quantitativo_promocional'] = estoque * \
-                    preco_unt_promo
+                                                                         preco_unt_promo
 
-                error_msg_estoque = 'Estoque insuficiente para alguns '\
-                    'produtos do seu carrinho. '\
-                    'Reduzimos a quantidade desses produtos. Por favor, '\
-                    'verifique quais produtos foram afetados a seguir.'
+                error_msg_estoque = 'Estoque insuficiente para alguns ' \
+                                    'produtos do seu carrinho. ' \
+                                    'Reduzimos a quantidade desses produtos. Por favor, ' \
+                                    'verifique quais produtos foram afetados a seguir.'
 
             if error_msg_estoque:
                 messages.error(
@@ -134,3 +134,10 @@ class Lista(DispatchLoginRequiredMixin, ListView):
     template_name = 'pedido/lista.html'
     paginate_by = 10
     ordering = ['-id']
+
+
+class Finalizar(DispatchLoginRequiredMixin, ListView):
+    model = Pedido
+    context_object_name = 'pedido'
+    template_name = 'pedido/finalizar.html'
+    pk_url_kwarg = 'pk'

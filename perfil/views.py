@@ -132,10 +132,10 @@ class Criar(BasePerfil):
 
         messages.success(
             self.request,
-            'Você fez login e pode concluir sua compra.'
+            'Você fez login no sistema.'
         )
 
-        return redirect('produto:carrinho')
+        return redirect('produto:lista')
         return self.renderizar
 
 
@@ -170,9 +170,9 @@ class Login(View):
 
         messages.success(
             self.request,
-            'Você fez login no sistema e pode concluir sua compra.'
+            'Você fez login no sistema.'
         )
-        return redirect('produto:carrinho')
+        return redirect('produto:lista')
 
 
 class Logout(View):
