@@ -59,3 +59,39 @@ password: wasaloko
 # Prints do site
 ### Tela inicio
 ![inicio.png](utils/readme/inicio.png)
+
+### Tela de login e cadastro
+![login_cadastro.png](utils/readme/login_cadastro.png)
+
+### Tela de lista de produtos
+![lista_produtos.png](utils/readme/lista_produtos.png)
+
+### Barra de navegação de tipos de proutos
+![nav_produtos.png](utils/readme/nav_produtos.png)
+
+### Filtro de produtos
+![filtrando_produtos.png](utils/readme/filtrando_produtos.png)
+
+### Busca produtos
+![busca_produtos.png](utils/readme/busca_produtos.png)
+
+### Detalhe produto
+![detalhe_produto.png](utils/readme/detalhe_produto.png)
+
+### Adicionado ao carrinho
+![adicionado_carrinho.png](utils/readme/adicionado_carrinho.png)
+
+### Lista no carrinho
+![carrinho.png](utils/readme/carrinho.png)
+
+### Resumo da compra
+![resumo_compra.png](utils/readme/resumo_compra.png)
+
+### Pedido Realizado
+![pedido_realizado.png](utils/readme/pedido_realizado.png)
+
+### Pagamento feito
+![pagamento_feito.png](utils/readme/pagamento_feito.png)
+
+
+
